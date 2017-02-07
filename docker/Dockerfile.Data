@@ -1,0 +1,9 @@
+FROM centos:7.2.1511
+
+RUN groupadd -g 1000 nginx \
+    && useradd -d "/home/nginx" -u 1000 -g 1000 -m -s /bin/bash nginx
+
+ADD resource/nginx/ /usr/share/nginx/ 
+VOLUME [ "/usr/share/nginx/" ]
+ENTRYPOINT sleep infinity
+

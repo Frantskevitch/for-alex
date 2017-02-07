@@ -1,0 +1,19 @@
+version: '2'
+services:
+ data:
+  build:
+   context: .
+   dockerfile: Dockerfile.Data
+  container_name: Data
+  
+ nginx:
+  build:
+   context: .
+   dockerfile: Dockerfile.Nginx
+  expose: ["80"]
+  ports: [ "80:80" ]  
+  volumes_from:
+   - data
+  depends_on:
+   - data
+  container_name: Nginx
